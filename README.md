@@ -32,9 +32,13 @@ npm run preview  # preview the build
 
 ## Screenshots
 
-| Analytics dashboard | Component gallery |
+| Crypto dashboard | Analytics dashboard |
 | --- | --- |
-| ![Analytics](.github/media/analytics.png) | ![Components](.github/media/components.png) |
+| ![Crypto](.github/media/crypto.png) | ![Analytics](.github/media/analytics.png) |
+
+| Orders list | Component gallery |
+| --- | --- |
+| ![Orders](.github/media/orders.png) | ![Components](.github/media/components.png) |
 
 ## How the `ui/` layer works
 

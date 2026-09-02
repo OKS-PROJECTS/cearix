@@ -78,7 +78,7 @@ export const DASHBOARD_CONFIGS = {
     ],
     chart: {
       title: 'Applications received', subtitle: 'Rolling 12 months',
-      type: 'bar', x: 'month', data: wave(80, 30, 6).map((d) => ({ month: d.month, applications: d.value })),
+      type: 'column', x: 'month', data: wave(80, 30, 6).map((d) => ({ month: d.month, applications: d.value })),
       series: [{ key: 'applications', name: 'Applications', color: 'var(--oks-color-primary-500)' }],
       column: { radius: 4 },
     },
@@ -247,7 +247,7 @@ export const DASHBOARD_CONFIGS = {
     ],
     chart: {
       title: 'Tasks completed', subtitle: 'Rolling 12 months',
-      type: 'bar', x: 'month', data: wave(120, 40, 5).map((d) => ({ month: d.month, tasks: d.value })),
+      type: 'column', x: 'month', data: wave(120, 40, 5).map((d) => ({ month: d.month, tasks: d.value })),
       series: [{ key: 'tasks', name: 'Tasks', color: 'var(--oks-color-primary-500)' }],
       column: { radius: 4 },
     },
@@ -368,7 +368,7 @@ export const DASHBOARD_CONFIGS = {
     ],
     chart: {
       title: 'Focus hours', subtitle: 'This year',
-      type: 'bar', x: 'month', data: wave(60, 18, 1.5).map((d) => ({ month: d.month, hours: d.value })),
+      type: 'column', x: 'month', data: wave(60, 18, 1.5).map((d) => ({ month: d.month, hours: d.value })),
       series: [{ key: 'hours', name: 'Hours', color: 'var(--oks-color-primary-500)' }],
       column: { radius: 4 },
     },
@@ -441,7 +441,7 @@ export const DASHBOARD_CONFIGS = {
     ],
     chart: {
       title: 'Learning hours', subtitle: 'This year',
-      type: 'bar', x: 'month', data: wave(12, 6, 0.4).map((d) => ({ month: d.month, hours: d.value })),
+      type: 'column', x: 'month', data: wave(12, 6, 0.4).map((d) => ({ month: d.month, hours: d.value })),
       series: [{ key: 'hours', name: 'Hours', color: 'var(--oks-color-primary-500)' }],
       column: { radius: 4 },
     },

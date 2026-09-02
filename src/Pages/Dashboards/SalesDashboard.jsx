@@ -68,7 +68,7 @@ export default function SalesDashboard() {
       </div>
 
       {/* Recent activity + Sales by country */}
-      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 items-start gap-4 sm:gap-6 lg:grid-cols-2">
         <PanelCard title="Recent activity" actions={<Button as={Link} to="/pages/timeline/feed" size="sm" variant="ghost">View all</Button>}>
           <ActivityFeed items={recentActivity} />
         </PanelCard>
@@ -186,9 +186,13 @@ export default function SalesDashboard() {
       </div>
 
       {/* Sales value + Monthly profits */}
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
-        <PanelCard title="Sales value" actions={<Button as={Link} to="/dashboards/analytics" size="sm" variant="ghost">View all</Button>}>
-          <div className="flex flex-wrap items-end justify-between gap-4">
+      <div className="mt-6 grid grid-cols-1 items-start gap-4 sm:gap-6 lg:grid-cols-2">
+        <PanelCard
+          title="Sales value"
+          actions={<Button as={Link} to="/dashboards/analytics" size="sm" variant="ghost">View all</Button>}
+          bodyClassName="p-0"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-4 px-5 pt-5">
             <div>
               <p className="text-[0.78rem]" style={{ color: 'var(--app-fg-muted)' }}>Sale items</p>
               <p className="text-[1.3rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{salesValue.items}</p>
@@ -199,36 +203,25 @@ export default function SalesDashboard() {
             </div>
             <TrendChip value={salesValue.delta} />
           </div>
-          <div className="mt-3">
-            <BareChart
-              type="area"
-              height={140}
-              data={salesStats}
-              x="month"
-              series={[{ key: 'income', name: 'Value', color: 'var(--oks-color-primary-500)' }]}
-              axisX={{ hide: true }}
-              axisY={{ hide: true }}
-            />
-          </div>
+          <BareChart
+            className="mt-2"
+            type="area"
+            height={190}
+            data={salesStats}
+            x="month"
+            series={[{ key: 'income', name: 'Value', color: 'var(--oks-color-primary-500)' }]}
+            axisX={{ hide: true }}
+            axisY={{ hide: true }}
+          />
         </PanelCard>
 
         <PanelCard title="Monthly profits" actions={<Button as={Link} to="/dashboards/analytics" size="sm" variant="ghost">View all</Button>}>
-          <div className="mb-4 flex items-center justify-between border-b pb-4" style={{ borderColor: 'var(--app-border)' }}>
-            <div>
-              <p className="text-[1.35rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{monthlyProfits.total}</p>
-              <p className="text-[0.78rem]" style={{ color: 'var(--app-fg-muted)' }}>{monthlyProfits.note}</p>
-            </div>
-            <div className="w-28">
-              <BareChart
-                type="area"
-                height={44}
-                data={monthlyProfits.spark}
-                x="month"
-                series={[{ key: 'value', name: 'v', color: 'var(--oks-color-success-500)' }]}
-                axisX={{ hide: true }}
-                axisY={{ hide: true }}
-              />
-            </div>
+          <div className="mb-4 border-b pb-4" style={{ borderColor: 'var(--app-border)' }}>
+            <p className="text-[1.35rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{monthlyProfits.total}</p>
+            <p className="mt-0.5 flex items-center gap-2 text-[0.78rem]" style={{ color: 'var(--app-fg-muted)' }}>
+              {monthlyProfits.note}
+              <TrendChip value={9.2} />
+            </p>
           </div>
           <MeterList
             items={monthlyProfits.bars.map((b) => ({ label: b.label, value: b.value, color: b.color, display: `${b.value}%` }))}
@@ -237,7 +230,7 @@ export default function SalesDashboard() {
       </div>
 
       {/* Transactions + Recent orders */}
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-5">
+      <div className="mt-6 grid grid-cols-1 items-start gap-4 sm:gap-6 lg:grid-cols-5">
         <PanelCard className="lg:col-span-2" title="Transactions history" actions={<Button as={Link} to="/pages/invoice/list" size="sm" variant="ghost">View all</Button>}>
           <ul className="flex flex-col">
             {transactions.map((t, i) => (

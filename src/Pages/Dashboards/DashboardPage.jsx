@@ -46,7 +46,7 @@ export default function DashboardPage({ config }) {
         ))}
       </KpiGrid>
 
-      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 items-start gap-4 sm:gap-6 lg:grid-cols-3">
         <ChartCard
           className="lg:col-span-2"
           title={chart.title}
@@ -75,7 +75,7 @@ export default function DashboardPage({ config }) {
       </div>
 
       {(table || meters || activity) && (
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
+        <div className="mt-6 grid grid-cols-1 items-start gap-4 sm:gap-6 lg:grid-cols-3">
           {table && (
             <PanelCard
               title={table.title}

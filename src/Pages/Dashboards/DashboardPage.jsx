@@ -10,7 +10,14 @@ import {
   DataTable,
   MeterList,
   ActivityFeed,
+  actionColumn,
 } from '../../Components/ui'
+
+const ViewAll = ({ to }) => (
+  <Button as={Link} to={to || '/dashboards/sales'} size="sm" variant="ghost">
+    View all
+  </Button>
+)
 
 /**
  * Config-driven dashboard. Sales stays bespoke; the other 11 read a config:
@@ -45,7 +52,7 @@ export default function DashboardPage({ config }) {
           title={chart.title}
           subtitle={chart.subtitle}
           type={chart.type}
-          height={300}
+          height={280}
           data={chart.data}
           x={chart.x}
           series={chart.series}
@@ -57,11 +64,11 @@ export default function DashboardPage({ config }) {
         {side.kind === 'donut' ? (
           <DonutCard title={side.title} subtitle={side.subtitle} data={side.data} centerValue={side.centerValue} centerLabel={side.centerLabel} />
         ) : side.kind === 'meters' ? (
-          <PanelCard title={side.title} subtitle={side.subtitle}>
+          <PanelCard title={side.title} subtitle={side.subtitle} actions={<ViewAll to={action?.to} />}>
             <MeterList items={side.data} />
           </PanelCard>
         ) : (
-          <PanelCard title={side.title} subtitle={side.subtitle}>
+          <PanelCard title={side.title} subtitle={side.subtitle} actions={<ViewAll to={action?.to} />}>
             <ActivityFeed items={side.data} />
           </PanelCard>
         )}
@@ -70,19 +77,30 @@ export default function DashboardPage({ config }) {
       {(table || meters || activity) && (
         <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
           {table && (
-            <PanelCard title={table.title} className={activity || meters ? 'lg:col-span-2' : 'lg:col-span-3'} bodyClassName="p-0">
+            <PanelCard
+              title={table.title}
+              className={activity || meters ? 'lg:col-span-2' : 'lg:col-span-3'}
+              actions={<ViewAll to={action?.to} />}
+              bodyClassName="p-0"
+            >
               <div className="p-5">
-                <DataTable ariaLabel={table.title} columns={table.columns} rows={table.rows} pageSize={table.pageSize || 6} searchKeys={table.searchKeys} />
+                <DataTable
+                  ariaLabel={table.title}
+                  columns={[...table.columns, actionColumn()]}
+                  rows={table.rows}
+                  pageSize={table.pageSize || 6}
+                  searchKeys={table.searchKeys}
+                />
               </div>
             </PanelCard>
           )}
           {meters && (
-            <PanelCard title={meters.title}>
+            <PanelCard title={meters.title} actions={<ViewAll to={action?.to} />}>
               <MeterList items={meters.data} />
             </PanelCard>
           )}
           {activity && (
-            <PanelCard title={activity.title}>
+            <PanelCard title={activity.title} actions={<ViewAll to={action?.to} />}>
               <ActivityFeed items={activity.data} />
             </PanelCard>
           )}

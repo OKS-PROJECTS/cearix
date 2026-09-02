@@ -1,5 +1,5 @@
-import { ArrowDownRight, ArrowUpRight, Minus } from 'lucide-react'
-import { Chip, Avatar } from 'oks-ui'
+import { ArrowDownRight, ArrowUpRight, Minus, Eye, Pencil, Trash2 } from 'lucide-react'
+import { Chip, Avatar, Button, toast } from 'oks-ui'
 import { cx } from '../../lib/cx'
 import { avatarUrl } from '../../lib/avatar'
 
@@ -76,6 +76,24 @@ export function EntityCell({ name, sub, seed, company = false, src, size = 32 })
           </div>
         )}
       </div>
+    </div>
+  )
+}
+
+/** Row action cluster — soft view / edit / delete icon buttons (reference pattern). */
+export function RowActions({ onView, onEdit, onDelete }) {
+  const noop = (label) => () => toast.info(`${label} (demo)`)
+  return (
+    <div className="flex items-center justify-end gap-1.5">
+      <Button isIconOnly size="sm" variant="soft" color="default" aria-label="View" onPress={onView || noop('View')}>
+        <Eye size={14} />
+      </Button>
+      <Button isIconOnly size="sm" variant="soft" color="primary" aria-label="Edit" onPress={onEdit || noop('Edit')}>
+        <Pencil size={14} />
+      </Button>
+      <Button isIconOnly size="sm" variant="soft" color="danger" aria-label="Delete" onPress={onDelete || noop('Delete')}>
+        <Trash2 size={14} />
+      </Button>
     </div>
   )
 }

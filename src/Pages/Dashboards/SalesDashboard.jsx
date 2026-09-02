@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   DollarSign,
@@ -9,30 +10,40 @@ import {
   ArrowDownRight,
 } from 'lucide-react'
 import { Button, Avatar } from 'oks-ui'
-import { fmtDate } from '../../lib/date'
 import {
   PageHeader,
   KpiCard,
   ChartCard,
-  DonutCard,
   PanelCard,
   DataTable,
   ActivityFeed,
   StatusChip,
+  MeterList,
+  SegmentedControl,
+  BareChart,
+  TrendChip,
+  EntityCell,
+  actionColumn,
 } from '../../Components/ui'
+import { fmtDate } from '../../lib/date'
 import {
   salesKpis,
-  revenueSeries,
+  salesStats,
   salesByCountry,
-  channelSplit,
   recentActivity,
   topProducts,
   recentOrders,
+  salesValue,
+  monthlyProfits,
+  transactions,
 } from '../../data/sales'
 
 const ICONS = { sales: DollarSign, revenue: Wallet, products: Package, expenses: TrendingDown, subs: Users }
+const money = (n) => `$${Math.abs(n).toLocaleString()}`
 
 export default function SalesDashboard() {
+  const [range, setRange] = useState('month')
+
   return (
     <>
       <PageHeader
@@ -47,52 +58,27 @@ export default function SalesDashboard() {
 
       <div className="mb-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
         {salesKpis.slice(0, 3).map((k) => (
-          <KpiCard key={k.key} label={k.label} value={k.value} delta={k.delta} icon={ICONS[k.key]} tone={k.tone} to={k.to} />
+          <KpiCard key={k.key} {...k} icon={ICONS[k.key]} />
         ))}
       </div>
-      <div className="mb-6 grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2">
+      <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
         {salesKpis.slice(3).map((k) => (
-          <KpiCard key={k.key} label={k.label} value={k.value} delta={k.delta} icon={ICONS[k.key]} tone={k.tone} to={k.to} />
+          <KpiCard key={k.key} {...k} icon={ICONS[k.key]} />
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
-        <ChartCard
-          className="lg:col-span-2"
-          title="Revenue & orders"
-          subtitle="Rolling 12 months"
-          type="area"
-          height={300}
-          data={revenueSeries}
-          x="month"
-          series={[
-            { key: 'revenue', name: 'Revenue', color: 'var(--oks-color-primary-500)' },
-            { key: 'orders', name: 'Orders', color: 'var(--oks-color-info-500)' },
-          ]}
-          dataFormat={{ format: 'compact' }}
-          legend
-          tooltip
-        />
-        <DonutCard
-          title="Traffic by channel"
-          subtitle="Share of sessions"
-          data={channelSplit}
-          centerValue="100%"
-          centerLabel="Sessions"
-        />
-      </div>
-
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
-        <PanelCard title="Recent activity" className="lg:col-span-1">
+      {/* Recent activity + Sales by country */}
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
+        <PanelCard title="Recent activity" actions={<Button as={Link} to="/pages/timeline/feed" size="sm" variant="ghost">View all</Button>}>
           <ActivityFeed items={recentActivity} />
         </PanelCard>
 
         <PanelCard
           title="Sales by country"
-          className="lg:col-span-2"
+          actions={<Button as={Link} to="/dashboards/analytics" size="sm" variant="ghost">View all</Button>}
           bodyClassName="p-0"
         >
-          <div className="px-5 pb-4 pt-1">
+          <div className="px-5 py-2">
             <DataTable
               ariaLabel="Sales by country"
               pageSize={6}
@@ -103,9 +89,7 @@ export default function SalesDashboard() {
                   render: (r) => (
                     <span className="flex items-center gap-2.5">
                       <span className="text-base">{flag(r.code)}</span>
-                      <span className="font-medium" style={{ color: 'var(--app-fg-strong)' }}>
-                        {r.country}
-                      </span>
+                      <span className="font-medium" style={{ color: 'var(--app-fg-strong)' }}>{r.country}</span>
                     </span>
                   ),
                 },
@@ -132,61 +116,178 @@ export default function SalesDashboard() {
         </PanelCard>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-6 xl:grid-cols-2">
+      {/* Sales statistics — full width */}
+      <div className="mt-6">
+        <ChartCard
+          title="Sales statistics"
+          subtitle="Income vs. expense"
+          actions={
+            <SegmentedControl
+              aria-label="Range"
+              size="sm"
+              options={[
+                { label: 'Week', value: 'week' },
+                { label: 'Month', value: 'month' },
+                { label: 'Year', value: 'year' },
+              ]}
+              value={range}
+              onChange={setRange}
+            />
+          }
+          type="area"
+          height={280}
+          data={salesStats}
+          x="month"
+          series={[
+            { key: 'income', name: 'Income', color: 'var(--oks-color-primary-500)' },
+            { key: 'expense', name: 'Expense', color: 'var(--oks-color-secondary-500)' },
+          ]}
+          dataFormat={{ prefix: '$', format: 'compact' }}
+          legend
+          tooltip
+        />
+      </div>
+
+      {/* Top selling products — full width */}
+      <div className="mt-6">
         <PanelCard
           title="Top selling products"
-          actions={
-            <Button as={Link} to="/apps/ecommerce/products" size="sm" variant="bordered">
-              All products
-            </Button>
-          }
+          actions={<Button as={Link} to="/apps/ecommerce/products" size="sm" variant="bordered">All products</Button>}
+          bodyClassName="p-0"
         >
-          <DataTable
-            ariaLabel="Top selling products"
-            pageSize={6}
-            searchKeys={['name', 'category']}
-            columns={[
-              { key: 'name', header: 'Product', render: (r) => (
-                <div className="flex items-center gap-2.5">
-                  <Avatar name={r.name} radius="md" size={30} color="primary" />
-                  <div>
-                    <div className="text-[0.82rem] font-medium" style={{ color: 'var(--app-fg-strong)' }}>{r.name}</div>
-                    <div className="text-[0.74rem]" style={{ color: 'var(--app-fg-muted)' }}>{r.category}</div>
-                  </div>
-                </div>
-              ) },
-              { key: 'price', header: 'Price', align: 'end', sortable: true, render: (r) => `$${r.price}` },
-              { key: 'sold', header: 'Sold', align: 'end', sortable: true },
-              { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
-            ]}
-            rows={topProducts}
+          <div className="p-5">
+            <DataTable
+              ariaLabel="Top selling products"
+              pageSize={6}
+              searchKeys={['name', 'category']}
+              columns={[
+                {
+                  key: 'name',
+                  header: 'Product',
+                  render: (r) => (
+                    <div className="flex items-center gap-2.5">
+                      <Avatar name={r.name} radius="md" size={30} color="primary" />
+                      <div>
+                        <div className="text-[0.82rem] font-medium" style={{ color: 'var(--app-fg-strong)' }}>{r.name}</div>
+                        <div className="text-[0.74rem]" style={{ color: 'var(--app-fg-muted)' }}>{r.category}</div>
+                      </div>
+                    </div>
+                  ),
+                },
+                { key: 'status', header: 'Stock', render: (r) => <StatusChip status={r.stock === 0 ? 'Out of stock' : r.stock < 15 ? 'Few left' : 'In stock'} /> },
+                { key: 'price', header: 'Price', align: 'end', sortable: true, render: (r) => `$${r.price}` },
+                { key: 'sold', header: 'Sold', align: 'end', sortable: true, render: (r) => r.sold.toLocaleString() },
+                actionColumn(),
+              ]}
+              rows={topProducts}
+            />
+          </div>
+        </PanelCard>
+      </div>
+
+      {/* Sales value + Monthly profits */}
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
+        <PanelCard title="Sales value" actions={<Button as={Link} to="/dashboards/analytics" size="sm" variant="ghost">View all</Button>}>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-[0.78rem]" style={{ color: 'var(--app-fg-muted)' }}>Sale items</p>
+              <p className="text-[1.3rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{salesValue.items}</p>
+            </div>
+            <div>
+              <p className="text-[0.78rem]" style={{ color: 'var(--app-fg-muted)' }}>Sale revenue</p>
+              <p className="text-[1.3rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{salesValue.revenue}</p>
+            </div>
+            <TrendChip value={salesValue.delta} />
+          </div>
+          <div className="mt-3">
+            <BareChart
+              type="area"
+              height={140}
+              data={salesStats}
+              x="month"
+              series={[{ key: 'income', name: 'Value', color: 'var(--oks-color-primary-500)' }]}
+              axisX={{ hide: true }}
+              axisY={{ hide: true }}
+            />
+          </div>
+        </PanelCard>
+
+        <PanelCard title="Monthly profits" actions={<Button as={Link} to="/dashboards/analytics" size="sm" variant="ghost">View all</Button>}>
+          <div className="mb-4 flex items-center justify-between border-b pb-4" style={{ borderColor: 'var(--app-border)' }}>
+            <div>
+              <p className="text-[1.35rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{monthlyProfits.total}</p>
+              <p className="text-[0.78rem]" style={{ color: 'var(--app-fg-muted)' }}>{monthlyProfits.note}</p>
+            </div>
+            <div className="w-28">
+              <BareChart
+                type="area"
+                height={44}
+                data={monthlyProfits.spark}
+                x="month"
+                series={[{ key: 'value', name: 'v', color: 'var(--oks-color-success-500)' }]}
+                axisX={{ hide: true }}
+                axisY={{ hide: true }}
+              />
+            </div>
+          </div>
+          <MeterList
+            items={monthlyProfits.bars.map((b) => ({ label: b.label, value: b.value, color: b.color, display: `${b.value}%` }))}
           />
+        </PanelCard>
+      </div>
+
+      {/* Transactions + Recent orders */}
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-5">
+        <PanelCard className="lg:col-span-2" title="Transactions history" actions={<Button as={Link} to="/pages/invoice/list" size="sm" variant="ghost">View all</Button>}>
+          <ul className="flex flex-col">
+            {transactions.map((t, i) => (
+              <li
+                key={i}
+                className="flex items-center justify-between gap-3 py-3 first:pt-0 last:pb-0"
+                style={{ borderBottom: i < transactions.length - 1 ? '1px solid var(--app-border)' : 'none' }}
+              >
+                <div className="min-w-0">
+                  <p className="truncate text-[0.83rem] font-medium" style={{ color: 'var(--app-fg-strong)' }}>{t.label}</p>
+                  <p className="text-[0.73rem]" style={{ color: 'var(--app-fg-subtle)' }}>{t.time}</p>
+                </div>
+                <span
+                  className="shrink-0 text-[0.83rem] font-semibold"
+                  style={{ color: t.amount >= 0 ? 'var(--app-success)' : 'var(--app-danger)' }}
+                >
+                  {t.amount >= 0 ? '+' : '−'}{money(t.amount)}
+                </span>
+              </li>
+            ))}
+          </ul>
         </PanelCard>
 
         <PanelCard
+          className="lg:col-span-3"
           title="Recent orders"
-          actions={
-            <Button as={Link} to="/apps/ecommerce/orders" size="sm" variant="bordered">
-              All orders
-            </Button>
-          }
+          actions={<Button as={Link} to="/apps/ecommerce/orders" size="sm" variant="bordered">All orders</Button>}
+          bodyClassName="p-0"
         >
-          <DataTable
-            ariaLabel="Recent orders"
-            pageSize={6}
-            columns={[
-              { key: 'id', header: 'Order', render: (r) => (
-                <Link to="/apps/ecommerce/order-details" className="font-medium" style={{ color: 'var(--app-primary)' }}>
-                  {r.id}
-                </Link>
-              ) },
-              { key: 'customer', header: 'Customer' },
-              { key: 'date', header: 'Date', align: 'end', render: (r) => fmtDate(r.date) },
-              { key: 'total', header: 'Total', align: 'end', sortable: true, render: (r) => `$${r.total.toFixed(2)}` },
-              { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
-            ]}
-            rows={recentOrders}
-          />
+          <div className="p-5">
+            <DataTable
+              ariaLabel="Recent orders"
+              pageSize={6}
+              columns={[
+                { key: 'customer', header: 'Customer', render: (r) => <EntityCell name={r.customer} sub={r.email} seed={r.customer} /> },
+                {
+                  key: 'id',
+                  header: 'Order',
+                  render: (r) => (
+                    <Link to="/apps/ecommerce/order-details" className="font-medium" style={{ color: 'var(--app-primary)' }}>{r.id}</Link>
+                  ),
+                },
+                { key: 'date', header: 'Date', align: 'end', render: (r) => fmtDate(r.date) },
+                { key: 'total', header: 'Total', align: 'end', sortable: true, render: (r) => `$${r.total.toFixed(2)}` },
+                { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
+                actionColumn(),
+              ]}
+              rows={recentOrders}
+            />
+          </div>
         </PanelCard>
       </div>
     </>

@@ -23,7 +23,7 @@ export function Footer() {
         <Link to="/pages/terms">Terms</Link>
         <Link to="/pages/faqs">Support</Link>
         <Chip size="sm" variant="soft" color="primary">
-          v0.1.0
+          v1.0.0
         </Chip>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 export { Surface, CardHeader, SectionTitle, PanelCard } from './Surface'
 export { PageHeader } from './PageHeader'
-export { StatusChip, TrendChip, EntityCell, Dot } from './chips'
+export { StatusChip, TrendChip, EntityCell, Dot, RowActions } from './chips'
+export { actionColumn } from './tableColumns'
 export { KpiCard, KpiGrid } from './Kpi'
 export { ChartCard, BareChart } from './ChartCard'
 export { DonutCard } from './DonutCard'

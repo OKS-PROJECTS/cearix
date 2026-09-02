@@ -1,5 +1,6 @@
 // Deterministic mock data — index-generated, never Math.random, never the
 // reference's strings/numbers.
+import { fmtDate, fmtDateTime } from '../lib/date'
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
@@ -34,7 +35,33 @@ export const channelSplit = [
   { label: 'Email', value: 6 },
 ]
 
-import { fmtDateTime } from '../lib/date'
+export const salesStats = MONTHS.map((m, i) => ({
+  month: m,
+  income: 8000 + Math.round(Math.sin(i / 1.6) * 2600) + i * 420,
+  expense: 5200 + Math.round(Math.cos(i / 2.0) * 1800) + i * 240,
+}))
+
+export const salesValue = { items: '18,675', revenue: '$122,390', delta: 6.4 }
+
+export const monthlyProfits = {
+  total: '$78,344',
+  note: 'Total profit growth of 85%',
+  spark: MONTHS.slice(0, 8).map((m, i) => ({ month: m, value: 40 + Math.round(Math.sin(i) * 12) + i * 3 })),
+  bars: [
+    { label: 'Furniture', value: 93, color: 'primary' },
+    { label: 'Home decor', value: 78, color: 'success' },
+    { label: 'Electronics', value: 64, color: 'info' },
+    { label: 'Textiles', value: 52, color: 'warning' },
+  ],
+}
+
+export const transactions = [
+  { label: 'Payout to bank account', time: 'Just now', amount: 24500, kind: 'out' },
+  { label: 'Subscription — analytics add-on', time: 'Yesterday', amount: -49, kind: 'out' },
+  { label: 'Received from Meridian Supply', time: fmtDate('2026-08-28'), amount: 15000, kind: 'in' },
+  { label: 'Card processing fees', time: fmtDate('2026-08-25'), amount: -312, kind: 'out' },
+  { label: 'Received from Cobalt Interiors', time: fmtDate('2026-08-22'), amount: 8400, kind: 'in' },
+]
 
 export const recentActivity = [
   { title: 'Order CRX-4821 marked delivered', time: fmtDateTime('2026-09-02T11:20'), description: 'Fulfilment · Priya Nandakumar', color: 'success' },
@@ -54,10 +81,10 @@ export const topProducts = [
 ]
 
 export const recentOrders = [
-  { id: 'CRX-4821', customer: 'Priya Nandakumar', date: '2026-08-30', total: 318.0, status: 'Delivered' },
-  { id: 'CRX-4820', customer: 'Dominic Alvarez', date: '2026-08-30', total: 129.5, status: 'Shipped' },
-  { id: 'CRX-4819', customer: 'Sofia Renner', date: '2026-08-29', total: 542.0, status: 'Processing' },
-  { id: 'CRX-4818', customer: 'Emeka Obi', date: '2026-08-29', total: 89.0, status: 'Pending' },
-  { id: 'CRX-4817', customer: 'Lena Fischer', date: '2026-08-28', total: 216.75, status: 'Delivered' },
-  { id: 'CRX-4816', customer: 'Marco Bianchi', date: '2026-08-28', total: 74.0, status: 'Cancelled' },
+  { id: 'CRX-4821', customer: 'Priya Nandakumar', email: 'priya.n@example.com', date: '2026-08-30', total: 318.0, status: 'Delivered' },
+  { id: 'CRX-4820', customer: 'Dominic Alvarez', email: 'dominic.a@example.com', date: '2026-08-30', total: 129.5, status: 'Shipped' },
+  { id: 'CRX-4819', customer: 'Sofia Renner', email: 'sofia.r@example.com', date: '2026-08-29', total: 542.0, status: 'Processing' },
+  { id: 'CRX-4818', customer: 'Emeka Obi', email: 'emeka.o@example.com', date: '2026-08-29', total: 89.0, status: 'Pending' },
+  { id: 'CRX-4817', customer: 'Lena Fischer', email: 'lena.f@example.com', date: '2026-08-28', total: 216.75, status: 'Delivered' },
+  { id: 'CRX-4816', customer: 'Marco Bianchi', email: 'marco.b@example.com', date: '2026-08-28', total: 74.0, status: 'Cancelled' },
 ]

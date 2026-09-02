@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Package, ShoppingCart, ReceiptText, Layers } from 'lucide-react'
 import { StatusChip, EntityCell, TrendChip } from '../Components/ui'
+import { fmtDate } from '../lib/date'
 import { products, orders, invoices, team, reviews, wishlist } from './catalog'
 
 const money = (n) => `$${n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
@@ -69,7 +70,7 @@ export const LIST_CONFIGS = {
         <Link to="/apps/ecommerce/order-details" className="font-medium" style={{ color: 'var(--app-primary)' }}>{r.id}</Link>
       ) },
       { key: 'customer', header: 'Customer', render: (r) => <EntityCell name={r.customer} sub={r.email} seed={r.customer} /> },
-      { key: 'date', header: 'Date', align: 'end', sortable: true },
+      { key: 'date', header: 'Date', align: 'end', sortable: true, render: (r) => fmtDate(r.date) },
       { key: 'items', header: 'Items', align: 'end' },
       { key: 'total', header: 'Total', align: 'end', sortable: true, render: (r) => money(r.total) },
       { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
@@ -96,7 +97,7 @@ export const LIST_CONFIGS = {
     columns: [
       { key: 'name', header: 'Product', render: (r) => <EntityCell name={r.name} sub={r.category} company /> },
       { key: 'price', header: 'Price', align: 'end', sortable: true, render: (r) => `$${r.price}` },
-      { key: 'addedOn', header: 'Added', align: 'end', sortable: true },
+      { key: 'addedOn', header: 'Added', align: 'end', sortable: true, render: (r) => fmtDate(r.addedOn) },
       { key: 'status', header: 'Availability', render: (r) => <StatusChip status={r.stock > 0 ? 'Active' : 'Cancelled'} /> },
     ],
     rows: wishlist,
@@ -112,8 +113,8 @@ export const LIST_CONFIGS = {
         <Link to="/pages/invoice/details" className="font-medium" style={{ color: 'var(--app-primary)' }}>{r.id}</Link>
       ) },
       { key: 'client', header: 'Client', render: (r) => <EntityCell name={r.client} sub={r.contact} company /> },
-      { key: 'issued', header: 'Issued', align: 'end', sortable: true },
-      { key: 'due', header: 'Due', align: 'end', sortable: true },
+      { key: 'issued', header: 'Issued', align: 'end', sortable: true, render: (r) => fmtDate(r.issued) },
+      { key: 'due', header: 'Due', align: 'end', sortable: true, render: (r) => fmtDate(r.due) },
       { key: 'amount', header: 'Amount', align: 'end', sortable: true, render: (r) => money(r.amount) },
       { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
     ],
@@ -196,7 +197,7 @@ export const LIST_CONFIGS = {
       { key: 'id', header: 'Order' },
       { key: 'customer', header: 'Customer', render: (r) => <EntityCell name={r.customer} sub={r.email} seed={r.customer} /> },
       { key: 'channel', header: 'Channel' },
-      { key: 'date', header: 'Date', align: 'end', sortable: true },
+      { key: 'date', header: 'Date', align: 'end', sortable: true, render: (r) => fmtDate(r.date) },
       { key: 'total', header: 'Total', align: 'end', sortable: true, render: (r) => money(r.total) },
       { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
     ],

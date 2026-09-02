@@ -9,6 +9,7 @@ import {
   ArrowDownRight,
 } from 'lucide-react'
 import { Button, Avatar } from 'oks-ui'
+import { fmtDate } from '../../lib/date'
 import {
   PageHeader,
   KpiCard,
@@ -180,7 +181,7 @@ export default function SalesDashboard() {
                 </Link>
               ) },
               { key: 'customer', header: 'Customer' },
-              { key: 'date', header: 'Date', align: 'end' },
+              { key: 'date', header: 'Date', align: 'end', render: (r) => fmtDate(r.date) },
               { key: 'total', header: 'Total', align: 'end', sortable: true, render: (r) => `$${r.total.toFixed(2)}` },
               { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
             ]}

@@ -1,3 +1,4 @@
+import { fmtDate, fmtDateTime } from '../lib/date'
 import { orders, products, invoices } from './catalog'
 
 const money = (n) => `$${n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
@@ -15,7 +16,7 @@ export const DETAIL_CONFIGS = {
         title: 'Summary',
         rows: [
           { label: 'Order number', value: order.id },
-          { label: 'Placed', value: order.date },
+          { label: 'Placed', value: fmtDate(order.date) },
           { label: 'Channel', value: order.channel },
           { label: 'Items', value: order.items },
           { label: 'Status', value: order.status },
@@ -49,10 +50,10 @@ export const DETAIL_CONFIGS = {
       },
     ],
     timeline: [
-      { title: 'Order placed', time: order.date, color: 'primary' },
-      { title: 'Payment captured', time: order.date, color: 'success' },
-      { title: 'Packed', time: '2026-08-29', color: 'info' },
-      { title: 'Handed to carrier', time: '2026-08-30', color: 'warning' },
+      { title: 'Order placed', time: fmtDateTime(order.date + 'T09:04'), color: 'primary' },
+      { title: 'Payment captured', time: fmtDateTime(order.date + 'T09:05'), color: 'success' },
+      { title: 'Packed', time: fmtDateTime('2026-08-29T14:20'), color: 'info' },
+      { title: 'Handed to carrier', time: fmtDateTime('2026-08-30T08:10', { time24: true }), color: 'warning' },
     ],
   },
 
@@ -107,8 +108,8 @@ export const DETAIL_CONFIGS = {
         title: 'Invoice',
         rows: [
           { label: 'Invoice number', value: invoice.id },
-          { label: 'Issued', value: invoice.issued },
-          { label: 'Due', value: invoice.due },
+          { label: 'Issued', value: fmtDate(invoice.issued) },
+          { label: 'Due', value: fmtDate(invoice.due) },
           { label: 'Status', value: invoice.status },
           { label: 'Amount due', value: money(invoice.amount) },
         ],
@@ -143,7 +144,7 @@ export const DETAIL_CONFIGS = {
           { label: 'Type', value: 'Figma document' },
           { label: 'Size', value: '48.2 MB' },
           { label: 'Owner', value: 'Wren Ashby' },
-          { label: 'Modified', value: '2026-08-28' },
+          { label: 'Modified', value: fmtDate('2026-08-28') },
           { label: 'Shared with', value: '6 people' },
         ],
       },

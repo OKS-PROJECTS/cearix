@@ -456,6 +456,14 @@ body {
 .oksTable td {
   border-color: var(--app-border) !important;
 }
+/* Never wrap table cells onto multiple lines — the table scrolls inside its
+   own container instead (.cearix-tablewrap has overflow-x:auto). */
+.oksTable :is(td, th) {
+  white-space: nowrap;
+}
+.oksTable :is(td, th) .truncate {
+  max-width: 22ch;
+}
 
 /* Chart wrapper keeps line/area edge-to-edge */
 .cearix-chart {

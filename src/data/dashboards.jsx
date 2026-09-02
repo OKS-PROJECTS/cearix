@@ -4,6 +4,7 @@ import {
   UserCheck, Clock, Target, Award, Heart, Flame, BookOpen,
 } from 'lucide-react'
 import { StatusChip, EntityCell } from '../Components/ui'
+import { fmtDate } from '../lib/date'
 
 const M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 const wave = (base, amp, step, phase = 0) =>
@@ -265,7 +266,7 @@ export const DASHBOARD_CONFIGS = {
       columns: [
         { key: 'name', header: 'Project' },
         { key: 'lead', header: 'Lead', render: (r) => <EntityCell name={r.lead} seed={r.lead} size={26} /> },
-        { key: 'due', header: 'Due', align: 'end' },
+        { key: 'due', header: 'Due', align: 'end', render: (r) => fmtDate(r.due) },
         { key: 'progress', header: 'Progress', align: 'end', render: (r) => `${r.progress}%` },
         { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
       ],

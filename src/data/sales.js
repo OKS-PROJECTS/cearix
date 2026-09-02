@@ -34,12 +34,14 @@ export const channelSplit = [
   { label: 'Email', value: 6 },
 ]
 
+import { fmtDateTime } from '../lib/date'
+
 export const recentActivity = [
-  { title: 'Order CRX-4821 marked delivered', time: '9m ago', description: 'Fulfilment · Priya Nandakumar', color: 'success' },
-  { title: 'Refund issued for CRX-4790', time: '46m ago', description: 'Payments · $128.00', color: 'danger' },
-  { title: 'New wholesale enquiry', time: '2h ago', description: 'Sales · Meridian Supply Co.', color: 'primary' },
-  { title: 'Inventory low: Aster Table Lamp', time: '5h ago', description: '8 units remaining', color: 'warning' },
-  { title: 'Weekly payout settled', time: '1d ago', description: 'Finance · $14,206.55', color: 'info' },
+  { title: 'Order CRX-4821 marked delivered', time: fmtDateTime('2026-09-02T11:20'), description: 'Fulfilment · Priya Nandakumar', color: 'success' },
+  { title: 'Refund issued for CRX-4790', time: fmtDateTime('2026-09-02T10:42'), description: 'Payments · $128.00', color: 'danger' },
+  { title: 'New wholesale enquiry', time: fmtDateTime('2026-09-02T09:15'), description: 'Sales · Meridian Supply Co.', color: 'primary' },
+  { title: 'Inventory low: Aster Table Lamp', time: fmtDateTime('2026-09-01T16:30'), description: '8 units remaining', color: 'warning' },
+  { title: 'Weekly payout settled', time: fmtDateTime('2026-09-01T08:00', { time24: true }), description: 'Finance · $14,206.55', color: 'info' },
 ]
 
 export const topProducts = [

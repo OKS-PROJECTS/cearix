@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+
+/* Tailwind's dark: variant follows [data-theme="dark"] on <html>. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme {
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+}
+
+html {
+  font-size: 13px;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Route-level scroll container */
+#root {
+  height: 100%;
+}

@@ -1,0 +1,510 @@
+/* =========================================================================
+   Cearix — design-token layer
+   Ported reference values on top; a semantic --app-* layer underneath so
+   light/dark and any rebrand flip together. Composed ui/ components read
+   ONLY --app-* tokens (never a raw hex, never an --oks-* internal).
+   ========================================================================= */
+
+:root {
+  /* ---- Type ---------------------------------------------------------- */
+  --oks-font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --oks-font-family: var(--oks-font-sans);
+
+  /* ---- Brand ramp -------------------------------------------------- */
+  --oks-palette-brand-50: #f6f1fd;
+  --oks-palette-brand-100: #ebe0fb;
+  --oks-palette-brand-200: #d6c1f7;
+  --oks-palette-brand-300: #bd9cf2;
+  --oks-palette-brand-400: #a273ed;
+  --oks-palette-brand-500: #8e54e9;
+  --oks-palette-brand-600: #7a49c6;
+  --oks-palette-brand-700: #663fa4;
+  --oks-palette-brand-800: #553586;
+  --oks-palette-brand-900: #472e6e;
+  --oks-palette-brand-950: #302247;
+
+  /* ---- Semantic roles — repointed at the reference's hues (all 11) -- */
+  --oks-color-primary-50: #f6f1fd;
+  --oks-color-primary-100: #ebe0fb;
+  --oks-color-primary-200: #d6c1f7;
+  --oks-color-primary-300: #bd9cf2;
+  --oks-color-primary-400: #a273ed;
+  --oks-color-primary-500: #8e54e9;
+  --oks-color-primary-600: #7a49c6;
+  --oks-color-primary-700: #663fa4;
+  --oks-color-primary-800: #553586;
+  --oks-color-primary-900: #472e6e;
+  --oks-color-primary-950: #302247;
+
+  --oks-color-secondary-50: #fef3f1;
+  --oks-color-secondary-100: #fde5df;
+  --oks-color-secondary-200: #fbcbbe;
+  --oks-color-secondary-300: #f9ab97;
+  --oks-color-secondary-400: #f7896b;
+  --oks-color-secondary-500: #f56f4b;
+  --oks-color-secondary-600: #d16042;
+  --oks-color-secondary-700: #ac5138;
+  --oks-color-secondary-800: #8c4430;
+  --oks-color-secondary-900: #73392a;
+  --oks-color-secondary-950: #4a2920;
+
+  --oks-color-success-50: #eefaf6;
+  --oks-color-success-100: #d8f3ec;
+  --oks-color-success-200: #b1e8d8;
+  --oks-color-success-300: #81dac1;
+  --oks-color-success-400: #4dcba7;
+  --oks-color-success-500: #26bf94;
+  --oks-color-success-600: #23a37f;
+  --oks-color-success-700: #1f876a;
+  --oks-color-success-800: #1c6f58;
+  --oks-color-success-900: #1a5c49;
+  --oks-color-success-950: #163d32;
+
+  --oks-color-warning-50: #fef9f0;
+  --oks-color-warning-100: #fdf2de;
+  --oks-color-warning-200: #fbe5bd;
+  --oks-color-warning-300: #f9d695;
+  --oks-color-warning-400: #f7c56a;
+  --oks-color-warning-500: #f5b849;
+  --oks-color-warning-600: #d19d40;
+  --oks-color-warning-700: #ac8337;
+  --oks-color-warning-800: #8c6b2f;
+  --oks-color-warning-900: #735929;
+  --oks-color-warning-950: #4a3b1f;
+
+  --oks-color-info-50: #f0f9fe;
+  --oks-color-info-100: #def2fd;
+  --oks-color-info-200: #bde5fb;
+  --oks-color-info-300: #95d5f9;
+  --oks-color-info-400: #6ac3f7;
+  --oks-color-info-500: #49b6f5;
+  --oks-color-info-600: #409cd1;
+  --oks-color-info-700: #3781ac;
+  --oks-color-info-800: #2f6a8c;
+  --oks-color-info-900: #295873;
+  --oks-color-info-950: #1f3a4a;
+
+  --oks-color-danger-50: #fdf1ef;
+  --oks-color-danger-100: #fbe0dc;
+  --oks-color-danger-200: #f6c1b9;
+  --oks-color-danger-300: #f19b8e;
+  --oks-color-danger-400: #eb725f;
+  --oks-color-danger-500: #e6533c;
+  --oks-color-danger-600: #c44835;
+  --oks-color-danger-700: #a23e2e;
+  --oks-color-danger-800: #843528;
+  --oks-color-danger-900: #6d2d23;
+  --oks-color-danger-950: #46221c;
+
+  /* opacity ramp for rgba(primary, .xx) tints the reference uses */
+  --oks-color-primary-rgb: 142 84 233;
+
+  /* ---- Radius ----------------------------------------------------- */
+  --oks-radius-sm: 0.25rem;
+  --oks-radius-md: 0.35rem;
+  --oks-radius-lg: 0.4rem;
+  --oks-radius-xl: 0.5rem;
+  --oks-radius-2xl: 0.75rem;
+
+  /* ---- oks-ui light-only tokens that MUST be set for dark too ----- */
+  --oks-color-surface: #ffffff;
+  --oks-color-border: #eef0f3;
+  --oks-form-field-bg: #ffffff;
+  --oks-form-field-fg: #1b2c3f;
+  --oks-form-field-placeholder: #98a2b3;
+  --oks-form-field-label: #38445a;
+  --oks-form-field-muted: #6b7688;
+  --oks-form-field-border: #e4e9f4;
+  --oks-form-field-border-hover: #cdd5e6;
+
+  /* =====================================================================
+     The --app-* layer — the only tokens composed ui/ components read
+     ===================================================================== */
+  --app-bg: #edeef1;
+  --app-surface: #ffffff;
+  --app-surface-2: #f7f8fa;
+  --app-surface-3: #eef1f5;
+  --app-border: #eceef1;
+  --app-border-strong: #dfe3ea;
+
+  --app-fg-strong: #14273b;
+  --app-fg: #1b2c3f;
+  --app-fg-muted: #6b7688;
+  --app-fg-subtle: #98a2b3;
+
+  --app-card-radius: 0.4rem;
+  --app-card-border: 1px solid var(--app-border);
+  --app-card-shadow: 0 0.15rem 0.1rem rgba(0, 0, 0, 0.04);
+
+  --app-menu-bg: #1c2c3f;
+  --app-menu-fg: #a9b4c4;
+  --app-menu-fg-muted: #768394;
+  --app-menu-active-bg: rgba(255, 255, 255, 0.08);
+  --app-menu-active-fg: #ffffff;
+  --app-menu-active-marker: var(--oks-color-primary-400);
+  --app-menu-border: rgba(255, 255, 255, 0.08);
+  --app-menu-heading: #5b6879;
+
+  --app-header-bg: linear-gradient(to right, #4776e6 0%, #8e54e9 100%);
+  --app-header-fg: #ffffff;
+  --app-header-height: 64px;
+  --app-header-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+  --app-header-control-bg: rgba(255, 255, 255, 0.14);
+  --app-header-control-fg: #ffffff;
+
+  --app-sidebar-width: 240px;
+  --app-sidebar-rail: 78px;
+
+  /* base role tokens the semantic aliases point at */
+  --app-accent: var(--oks-color-primary-500);
+  --app-accent-soft: var(--oks-color-primary-50);
+  --app-ok: var(--oks-color-success-500);
+  --app-ok-soft: var(--oks-color-success-50);
+  --app-warn: var(--oks-color-warning-500);
+  --app-warn-soft: var(--oks-color-warning-50);
+  --app-bad: var(--oks-color-danger-500);
+  --app-bad-soft: var(--oks-color-danger-50);
+  --app-info: var(--oks-color-info-500);
+  --app-info-soft: var(--oks-color-info-50);
+
+  /* semantic aliases — reference other --app-* tokens so they cascade to dark */
+  --app-primary: var(--app-accent);
+  --app-primary-soft: var(--app-accent-soft);
+  --app-success: var(--app-ok);
+  --app-success-soft: var(--app-ok-soft);
+  --app-warning: var(--app-warn);
+  --app-warning-soft: var(--app-warn-soft);
+  --app-danger: var(--app-bad);
+  --app-danger-soft: var(--app-bad-soft);
+}
+
+/* =========================================================================
+   Dark mode — redefine the --app-* layer + oks-ui light-only tokens +
+   reversed semantic ramps (oks-ui inverts its own palette ramps the same way)
+   ========================================================================= */
+:root[data-theme='dark'] {
+  --oks-palette-brand-50: #302247;
+  --oks-palette-brand-100: #472e6e;
+  --oks-palette-brand-200: #553586;
+  --oks-palette-brand-300: #663fa4;
+  --oks-palette-brand-400: #7a49c6;
+  --oks-palette-brand-500: #8e54e9;
+  --oks-palette-brand-600: #a273ed;
+  --oks-palette-brand-700: #bd9cf2;
+  --oks-palette-brand-800: #d6c1f7;
+  --oks-palette-brand-900: #ebe0fb;
+  --oks-palette-brand-950: #f6f1fd;
+
+  --oks-color-primary-50: #302247;
+  --oks-color-primary-100: #472e6e;
+  --oks-color-primary-200: #553586;
+  --oks-color-primary-300: #663fa4;
+  --oks-color-primary-400: #7a49c6;
+  --oks-color-primary-500: #8e54e9;
+  --oks-color-primary-600: #a273ed;
+  --oks-color-primary-700: #bd9cf2;
+  --oks-color-primary-800: #d6c1f7;
+  --oks-color-primary-900: #ebe0fb;
+  --oks-color-primary-950: #f6f1fd;
+
+  --oks-color-secondary-50: #4a2920;
+  --oks-color-secondary-100: #73392a;
+  --oks-color-secondary-200: #8c4430;
+  --oks-color-secondary-300: #ac5138;
+  --oks-color-secondary-400: #d16042;
+  --oks-color-secondary-500: #f56f4b;
+  --oks-color-secondary-600: #f7896b;
+  --oks-color-secondary-700: #f9ab97;
+  --oks-color-secondary-800: #fbcbbe;
+  --oks-color-secondary-900: #fde5df;
+  --oks-color-secondary-950: #fef3f1;
+
+  --oks-color-success-50: #163d32;
+  --oks-color-success-100: #1a5c49;
+  --oks-color-success-200: #1c6f58;
+  --oks-color-success-300: #1f876a;
+  --oks-color-success-400: #23a37f;
+  --oks-color-success-500: #26bf94;
+  --oks-color-success-600: #4dcba7;
+  --oks-color-success-700: #81dac1;
+  --oks-color-success-800: #b1e8d8;
+  --oks-color-success-900: #d8f3ec;
+  --oks-color-success-950: #eefaf6;
+
+  --oks-color-warning-50: #4a3b1f;
+  --oks-color-warning-100: #735929;
+  --oks-color-warning-200: #8c6b2f;
+  --oks-color-warning-300: #ac8337;
+  --oks-color-warning-400: #d19d40;
+  --oks-color-warning-500: #f5b849;
+  --oks-color-warning-600: #f7c56a;
+  --oks-color-warning-700: #f9d695;
+  --oks-color-warning-800: #fbe5bd;
+  --oks-color-warning-900: #fdf2de;
+  --oks-color-warning-950: #fef9f0;
+
+  --oks-color-info-50: #1f3a4a;
+  --oks-color-info-100: #295873;
+  --oks-color-info-200: #2f6a8c;
+  --oks-color-info-300: #3781ac;
+  --oks-color-info-400: #409cd1;
+  --oks-color-info-500: #49b6f5;
+  --oks-color-info-600: #6ac3f7;
+  --oks-color-info-700: #95d5f9;
+  --oks-color-info-800: #bde5fb;
+  --oks-color-info-900: #def2fd;
+  --oks-color-info-950: #f0f9fe;
+
+  --oks-color-danger-50: #46221c;
+  --oks-color-danger-100: #6d2d23;
+  --oks-color-danger-200: #843528;
+  --oks-color-danger-300: #a23e2e;
+  --oks-color-danger-400: #c44835;
+  --oks-color-danger-500: #e6533c;
+  --oks-color-danger-600: #eb725f;
+  --oks-color-danger-700: #f19b8e;
+  --oks-color-danger-800: #f6c1b9;
+  --oks-color-danger-900: #fbe0dc;
+  --oks-color-danger-950: #fdf1ef;
+
+  --oks-color-surface: #1a2336;
+  --oks-color-border: #2b3650;
+  --oks-form-field-bg: #141c2e;
+  --oks-form-field-fg: #e6e9f0;
+  --oks-form-field-placeholder: #6b7793;
+  --oks-form-field-label: #b7c0d4;
+  --oks-form-field-muted: #8a95ac;
+  --oks-form-field-border: #2b3650;
+  --oks-form-field-border-hover: #3a4a6b;
+
+  --app-bg: #141a2b;
+  --app-surface: #1a2336;
+  --app-surface-2: #202b42;
+  --app-surface-3: #26334e;
+  --app-border: #2b3650;
+  --app-border-strong: #3a4660;
+
+  --app-fg-strong: #f3f5f9;
+  --app-fg: #d7dceb;
+  --app-fg-muted: #8b96ad;
+  --app-fg-subtle: #6b7793;
+
+  --app-card-border: 1px solid var(--app-border);
+  --app-card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02);
+
+  --app-menu-bg: #161e30;
+  --app-menu-fg: #9aa6bd;
+  --app-menu-fg-muted: #6b7793;
+  --app-menu-active-bg: rgba(255, 255, 255, 0.06);
+  --app-menu-active-fg: #ffffff;
+  --app-menu-border: rgba(255, 255, 255, 0.06);
+  --app-menu-heading: #566076;
+
+  --app-header-bg: linear-gradient(to right, #33488f 0%, #593a8f 100%);
+  --app-header-control-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================================================
+   Global oks-ui patches (each also an OKS-UI-FEEDBACK.md entry)
+   ========================================================================= */
+
+/* <Chart> renders its own bordered/padded <figure> — every chart already
+   sits in a Surface. */
+.oksChart {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* <Chart type="donut"> centre total has no opt-out in some paths */
+.donut-no-center svg > g > text[text-anchor='middle'][dominant-baseline='middle'] {
+  display: none;
+}
+
+/* Button bordered/ghost + default colour — lift contrast on dark surfaces */
+.oksButton[data-variant='bordered'][data-color='default'],
+.oksButton[data-variant='ghost'][data-color='default'] {
+  --oks-button-tone: var(--app-fg-muted);
+  color: var(--app-fg) !important;
+}
+.oksButton[data-variant='bordered'][data-color='default'] {
+  border-color: var(--app-border-strong) !important;
+}
+
+body {
+  background: var(--app-bg);
+  color: var(--app-fg);
+}
+
+/* =========================================================================
+   Sidebar nav rows (composed — oks-ui ships no Sidebar / Nav-tree that fits
+   the reference's exact active treatment + mini-rail flyout)
+   ========================================================================= */
+.cearix-navrow {
+  color: var(--app-menu-fg);
+}
+.cearix-navrow:hover {
+  color: var(--app-menu-active-fg);
+}
+.cearix-navrow:hover .cearix-navmarker {
+  border-color: var(--app-menu-active-fg) !important;
+}
+.cearix-navrow.is-active,
+.cearix-navrow.is-parent-active {
+  color: var(--app-menu-active-fg);
+}
+.cearix-navrow.is-parent-active {
+  background: rgba(255, 255, 255, 0.04);
+}
+.cearix-navrow.is-active .cearix-navmarker {
+  border-color: var(--app-menu-active-fg) !important;
+}
+/* depth-0 group icon brightens with the row */
+.cearix-navrow.is-active svg,
+.cearix-navrow.is-parent-active svg,
+.cearix-navrow:hover svg {
+  color: var(--app-menu-active-fg);
+}
+
+/* mini-rail hover flyout */
+.cearix-nav-group {
+  position: relative;
+}
+.cearix-flyout {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  z-index: 50;
+  display: none;
+  padding-left: 8px;
+}
+.cearix-nav-group:hover > .cearix-flyout {
+  display: block;
+}
+.cearix-flyout-panel {
+  min-width: 210px;
+  border-radius: 0.5rem;
+  background: var(--app-menu-bg);
+  border: 1px solid var(--app-menu-border);
+  padding: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.cearix-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--app-menu-border) transparent;
+}
+.cearix-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.cearix-scroll::-webkit-scrollbar-thumb {
+  background: var(--app-menu-border);
+  border-radius: 999px;
+}
+
+/* Header icon buttons — white on the gradient */
+.cearix-header-btn.oksButton,
+.cearix-header-btn {
+  color: #fff !important;
+  --oks-button-tone: #fff;
+}
+.cearix-header-btn:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+}
+
+/* =========================================================================
+   Gradient page-hero band — the reference's signature top strip.
+   The fixed header + this band share one gradient; content overlaps upward.
+   ========================================================================= */
+.cearix-hero {
+  background: var(--app-header-bg);
+}
+/* buttons sitting in the hero band are glass-white, not brand-on-brand */
+.cearix-hero .oksButton {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  color: #fff !important;
+  --oks-button-tone: #fff;
+}
+.cearix-hero .oksButton:hover {
+  background: rgba(255, 255, 255, 0.26) !important;
+}
+
+/* Surface / card */
+.cearix-surface {
+  overflow: visible;
+}
+
+/* Table wrapper — inner scroll, never grows the page */
+.cearix-tablewrap {
+  width: 100%;
+}
+.cearix-tablewrap table {
+  width: 100%;
+}
+
+/* oks-ui Table header cell is a hard near-black in dark — tokenise it
+   (OKS-UI-FEEDBACK entry) */
+.oksTableHeaderCell {
+  background: var(--app-surface-2) !important;
+  color: var(--app-fg-muted) !important;
+  border-bottom: 1px solid var(--app-border) !important;
+}
+.oksTable td {
+  border-color: var(--app-border) !important;
+}
+
+/* Chart wrapper keeps line/area edge-to-edge */
+.cearix-chart {
+  width: 100%;
+}
+
+/* oks-ui Board / draggable widgets — never let a drag select page text */
+.oksBoard,
+.oksBoard *,
+.cearix-dragboard,
+.cearix-dragboard * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+.cearix-dragboard .oksBoardColumn {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.cearix-dragboard .oksBoardCard,
+.cearix-dragboard [class*='Card'] {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+.cearix-dragcard {
+  cursor: grab;
+}
+.cearix-dragcard:active {
+  cursor: grabbing;
+}
+body.cearix-dragging,
+body.cearix-dragging * {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+/* Segmented control — usable track in dark */
+.cearix-segmented {
+  --oks-color-neutral-100: var(--app-surface-3);
+}
+
+/* Breadcrumbs sizing to match the dense reference */
+.cearix-breadcrumbs {
+  font-size: 0.8rem;
+}
+
+/* Links inside content */
+.cearix-prose a {
+  color: var(--app-primary);
+}

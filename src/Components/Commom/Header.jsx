@@ -146,14 +146,14 @@ export function Header({ onToggleMobile, onToggleRail, rail }) {
         </div>
 
         <Dropdown placement="bottom-end">
-          <DropdownTrigger>
-            <span className="relative inline-flex">
+          <span className="relative inline-flex">
+            <DropdownTrigger>
               <Button isIconOnly variant="ghost" size="sm" aria-label="Notifications" className="cearix-header-btn">
                 <Bell size={18} />
               </Button>
-              <Badge content="3" color="danger" size="sm" className="absolute -right-0.5 -top-0.5" />
-            </span>
-          </DropdownTrigger>
+            </DropdownTrigger>
+            <Badge content="3" color="danger" size="sm" className="pointer-events-none absolute -right-0.5 -top-0.5" />
+          </span>
           <DropdownMenu aria-label="Notifications" className="w-72">
             <DropdownSection title="Notifications">
               <DropdownItem key="n1" title="New order #CRX-2048" description="A moment ago" />

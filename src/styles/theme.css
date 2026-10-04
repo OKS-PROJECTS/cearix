@@ -57,7 +57,7 @@
   --oks-color-success-400: #4dcba7;
   --oks-color-success-500: #26bf94;
   --oks-color-success-600: #23a37f;
-  --oks-color-success-700: #1f876a;
+  --oks-color-success-700: #1c795f;
   --oks-color-success-800: #1c6f58;
   --oks-color-success-900: #1a5c49;
   --oks-color-success-950: #163d32;
@@ -69,7 +69,7 @@
   --oks-color-warning-400: #f7c56a;
   --oks-color-warning-500: #f5b849;
   --oks-color-warning-600: #d19d40;
-  --oks-color-warning-700: #ac8337;
+  --oks-color-warning-700: #86662b;
   --oks-color-warning-800: #8c6b2f;
   --oks-color-warning-900: #735929;
   --oks-color-warning-950: #4a3b1f;
@@ -81,7 +81,7 @@
   --oks-color-info-400: #6ac3f7;
   --oks-color-info-500: #49b6f5;
   --oks-color-info-600: #409cd1;
-  --oks-color-info-700: #3781ac;
+  --oks-color-info-700: #307197;
   --oks-color-info-800: #2f6a8c;
   --oks-color-info-900: #295873;
   --oks-color-info-950: #1f3a4a;
@@ -113,7 +113,7 @@
   --oks-color-border: #eef0f3;
   --oks-form-field-bg: #ffffff;
   --oks-form-field-fg: #1b2c3f;
-  --oks-form-field-placeholder: #98a2b3;
+  --oks-form-field-placeholder: #656c77;
   --oks-form-field-label: #38445a;
   --oks-form-field-muted: #6b7688;
   --oks-form-field-border: #e4e9f4;
@@ -131,8 +131,8 @@
 
   --app-fg-strong: #14273b;
   --app-fg: #1b2c3f;
-  --app-fg-muted: #6b7688;
-  --app-fg-subtle: #98a2b3;
+  --app-fg-muted: #566173;
+  --app-fg-subtle: #656c77;
 
   --app-card-radius: 0.4rem;
   --app-card-border: 1px solid var(--app-border);
@@ -140,12 +140,12 @@
 
   --app-menu-bg: #1c2c3f;
   --app-menu-fg: #a9b4c4;
-  --app-menu-fg-muted: #768394;
+  --app-menu-fg-muted: #8893a2;
   --app-menu-active-bg: rgba(255, 255, 255, 0.08);
   --app-menu-active-fg: #ffffff;
   --app-menu-active-marker: var(--oks-color-primary-400);
   --app-menu-border: rgba(255, 255, 255, 0.08);
-  --app-menu-heading: #5b6879;
+  --app-menu-heading: #8a939f;
 
   --app-header-bg: linear-gradient(to right, #4776e6 0%, #8e54e9 100%);
   --app-header-fg: #ffffff;
@@ -158,15 +158,15 @@
   --app-sidebar-rail: 78px;
 
   /* base role tokens the semantic aliases point at */
-  --app-accent: var(--oks-color-primary-500);
+  --app-accent: var(--oks-color-primary-600);
   --app-accent-soft: var(--oks-color-primary-50);
-  --app-ok: var(--oks-color-success-500);
+  --app-ok: var(--oks-color-success-700);
   --app-ok-soft: var(--oks-color-success-50);
-  --app-warn: var(--oks-color-warning-500);
+  --app-warn: var(--oks-color-warning-700);
   --app-warn-soft: var(--oks-color-warning-50);
-  --app-bad: var(--oks-color-danger-500);
+  --app-bad: var(--oks-color-danger-700);
   --app-bad-soft: var(--oks-color-danger-50);
-  --app-info: var(--oks-color-info-500);
+  --app-info: var(--oks-color-info-700);
   --app-info-soft: var(--oks-color-info-50);
 
   /* semantic aliases — reference other --app-* tokens so they cascade to dark */
@@ -273,12 +273,13 @@
   --oks-color-border: #2b3650;
   --oks-form-field-bg: #141c2e;
   --oks-form-field-fg: #e6e9f0;
-  --oks-form-field-placeholder: #6b7793;
+  --oks-form-field-placeholder: #939cb0;
   --oks-form-field-label: #b7c0d4;
   --oks-form-field-muted: #8a95ac;
   --oks-form-field-border: #2b3650;
   --oks-form-field-border-hover: #3a4a6b;
 
+  --app-accent: var(--oks-color-primary-700);
   --app-bg: #141a2b;
   --app-surface: #1a2336;
   --app-surface-2: #202b42;
@@ -288,19 +289,19 @@
 
   --app-fg-strong: #f3f5f9;
   --app-fg: #d7dceb;
-  --app-fg-muted: #8b96ad;
-  --app-fg-subtle: #6b7793;
+  --app-fg-muted: #a4aec2;
+  --app-fg-subtle: #939cb0;
 
   --app-card-border: 1px solid var(--app-border);
   --app-card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02);
 
   --app-menu-bg: #161e30;
   --app-menu-fg: #9aa6bd;
-  --app-menu-fg-muted: #6b7793;
+  --app-menu-fg-muted: #7b869f;
   --app-menu-active-bg: rgba(255, 255, 255, 0.06);
   --app-menu-active-fg: #ffffff;
   --app-menu-border: rgba(255, 255, 255, 0.06);
-  --app-menu-heading: #566076;
+  --app-menu-heading: #7f8697;
 
   --app-header-bg: linear-gradient(to right, #33488f 0%, #593a8f 100%);
   --app-header-control-bg: rgba(255, 255, 255, 0.1);
@@ -515,4 +516,18 @@ body.cearix-dragging * {
 /* Links inside content */
 .cearix-prose a {
   color: var(--app-primary);
+}
+
+/* oks-ui colours field error text with the 500 shade of the danger ramp, which is only 3.7:1 on white
+   for this red. The 700 shade reads in both themes (the ramp mirrors in dark). */
+.oksCheckboxError,
+.oksDatePickerFieldError,
+.oksPhoneFieldError,
+.oksRadioError,
+.oksRangeFieldError,
+.oksSelectFieldError,
+.oksSwitchFieldError,
+.oksTextAreaFieldError,
+.oksTextFieldError {
+  color: var(--oks-color-danger-700);
 }

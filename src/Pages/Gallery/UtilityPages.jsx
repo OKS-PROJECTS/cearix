@@ -155,9 +155,9 @@ export function PositionPage() {
   return wrap('Position', (
     <Demo title="Sticky / absolute demo" className="w-full">
       <div className="relative h-48 w-full overflow-hidden rounded-lg" style={{ background: 'var(--app-surface-2)', border: '1px solid var(--app-border)' }}>
-        <span className="absolute left-3 top-3 rounded bg-[var(--app-primary)] px-2 py-1 text-[0.72rem] text-white">top-left</span>
-        <span className="absolute bottom-3 right-3 rounded bg-[var(--app-success)] px-2 py-1 text-[0.72rem] text-white">bottom-right</span>
-        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded bg-[var(--app-warning)] px-2 py-1 text-[0.72rem] text-white">centered</span>
+        <span className="absolute left-3 top-3 rounded bg-[var(--app-primary)] px-2 py-1 text-[0.72rem] text-[var(--oks-palette-neutral-0)]">top-left</span>
+        <span className="absolute bottom-3 right-3 rounded bg-[var(--app-success)] px-2 py-1 text-[0.72rem] text-[var(--oks-palette-neutral-0)]">bottom-right</span>
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded bg-[var(--app-warning)] px-2 py-1 text-[0.72rem] text-[var(--oks-palette-neutral-0)]">centered</span>
       </div>
     </Demo>
   ))

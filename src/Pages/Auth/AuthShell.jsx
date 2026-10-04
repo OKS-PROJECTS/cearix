@@ -9,7 +9,7 @@ export function AuthShell({ split = false, title, subtitle, children, footer }) 
   if (split) {
     return (
       <div className="grid min-h-dvh grid-cols-1 lg:grid-cols-2" style={{ background: 'var(--app-bg)' }}>
-        <div
+        <aside
           className="relative hidden flex-col justify-between overflow-hidden p-10 lg:flex"
           style={{ background: 'linear-gradient(150deg, #4776e6 0%, #8e54e9 100%)', color: '#fff' }}
         >
@@ -28,8 +28,8 @@ export function AuthShell({ split = false, title, subtitle, children, footer }) 
           <p className="text-[0.78rem] text-white/60">© {new Date().getFullYear()} Cearix</p>
           <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/10" />
           <div aria-hidden className="pointer-events-none absolute -bottom-32 right-10 h-80 w-80 rounded-full bg-white/5" />
-        </div>
-        <div className="flex items-center justify-center p-6 sm:p-10">
+        </aside>
+        <main className="flex items-center justify-center p-6 sm:p-10">
           <div className="w-full max-w-sm">
             <div className="mb-6 lg:hidden">
               <Logo markHeight={24} />
@@ -49,13 +49,13 @@ export function AuthShell({ split = false, title, subtitle, children, footer }) 
               </p>
             )}
           </div>
-        </div>
+        </main>
       </div>
     )
   }
 
   return (
-    <div className="flex min-h-dvh items-center justify-center p-6" style={{ background: 'var(--app-bg)' }}>
+    <main className="flex min-h-dvh items-center justify-center p-6" style={{ background: 'var(--app-bg)' }}>
       <div className="w-full max-w-sm">
         <div className="mb-6 flex justify-center">
           <Link to="/dashboards/sales">
@@ -86,6 +86,6 @@ export function AuthShell({ split = false, title, subtitle, children, footer }) 
           </p>
         )}
       </div>
-    </div>
+    </main>
   )
 }

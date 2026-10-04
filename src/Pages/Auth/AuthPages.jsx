@@ -21,7 +21,7 @@ export function SignIn({ split }) {
       split={split}
       title="Welcome back"
       subtitle="Sign in to your Cearix workspace."
-      footer={<>New here? <Link to="/auth/sign-up" style={{ color: 'var(--app-primary)' }}>Create an account</Link></>}
+      footer={<>New here? <Link to="/auth/sign-up" className="underline underline-offset-2" style={{ color: 'var(--app-primary)' }}>Create an account</Link></>}
     >
       <Form onSubmit={() => navigate('/dashboards/sales')} className="flex flex-col gap-4">
         <FormFieldSet type="email" name="email" label="Email" defaultValue="cassian@cearix.io" />
@@ -49,7 +49,7 @@ export function SignUp({ split }) {
       split={split}
       title="Create your account"
       subtitle="Start exploring the Cearix template."
-      footer={<>Already have an account? <Link to="/auth/sign-in" style={{ color: 'var(--app-primary)' }}>Sign in</Link></>}
+      footer={<>Already have an account? <Link to="/auth/sign-in" className="underline underline-offset-2" style={{ color: 'var(--app-primary)' }}>Sign in</Link></>}
     >
       <Form onSubmit={() => { toast.success('Account created'); navigate('/dashboards/sales') }} className="flex flex-col gap-4">
         <div className="grid grid-cols-2 gap-3">
@@ -72,7 +72,7 @@ export function ResetPassword({ split }) {
       split={split}
       title="Reset your password"
       subtitle="We'll email you a reset link."
-      footer={<Link to="/auth/sign-in" style={{ color: 'var(--app-primary)' }}>Back to sign in</Link>}
+      footer={<Link to="/auth/sign-in" className="underline underline-offset-2" style={{ color: 'var(--app-primary)' }}>Back to sign in</Link>}
     >
       <Form onSubmit={() => { toast.success('Reset link sent'); navigate('/auth/sign-in') }} className="flex flex-col gap-4">
         <FormFieldSet type="email" name="email" label="Email" validation={{ rules: { required: true, email: true } }} />
@@ -89,7 +89,7 @@ export function CreatePassword({ split }) {
       split={split}
       title="Set a new password"
       subtitle="Choose a strong password you don't use elsewhere."
-      footer={<Link to="/auth/sign-in" style={{ color: 'var(--app-primary)' }}>Back to sign in</Link>}
+      footer={<Link to="/auth/sign-in" className="underline underline-offset-2" style={{ color: 'var(--app-primary)' }}>Back to sign in</Link>}
     >
       <Form onSubmit={() => { toast.success('Password updated'); navigate('/auth/sign-in') }} className="flex flex-col gap-4">
         <PasswordField name="password" label="New password" />
@@ -107,7 +107,7 @@ export function LockScreen({ split }) {
       split={split}
       title="Cassian Holt"
       subtitle="Your session is locked. Enter your password to continue."
-      footer={<Link to="/auth/sign-in" style={{ color: 'var(--app-primary)' }}>Sign in as someone else</Link>}
+      footer={<Link to="/auth/sign-in" className="underline underline-offset-2" style={{ color: 'var(--app-primary)' }}>Sign in as someone else</Link>}
     >
       <Form onSubmit={() => navigate('/dashboards/sales')} className="flex flex-col gap-4">
         <TextField type="password" name="password" label="Password" placeholder="••••••••" />
@@ -124,7 +124,7 @@ export function TwoStep({ split }) {
       split={split}
       title="Two-step verification"
       subtitle="Enter the 6-digit code from your authenticator app."
-      footer={<Link to="/auth/sign-in" style={{ color: 'var(--app-primary)' }}>Back to sign in</Link>}
+      footer={<Link to="/auth/sign-in" className="underline underline-offset-2" style={{ color: 'var(--app-primary)' }}>Back to sign in</Link>}
     >
       <Form onSubmit={() => navigate('/dashboards/sales')} className="flex flex-col gap-4">
         <OtpField name="code" length={6} label="Verification code" />
@@ -139,7 +139,7 @@ export function TwoStep({ split }) {
 
 function Standalone({ icon: Icon, title, description, action }) {
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center gap-4 p-8 text-center" style={{ background: 'var(--app-bg)' }}>
+    <main className="flex min-h-dvh flex-col items-center justify-center gap-4 p-8 text-center" style={{ background: 'var(--app-bg)' }}>
       <Logo markHeight={28} />
       <span
         className="mt-4 flex h-14 w-14 items-center justify-center rounded-2xl"
@@ -150,7 +150,7 @@ function Standalone({ icon: Icon, title, description, action }) {
       <h1 className="text-2xl font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{title}</h1>
       <p className="max-w-md text-[0.9rem]" style={{ color: 'var(--app-fg-muted)' }}>{description}</p>
       {action}
-    </div>
+    </main>
   )
 }
 

@@ -17,7 +17,7 @@ data-fetching library.
 - `react-router-dom` v7
 - Tailwind v4 — layout utilities only; every colour, radius, border and shadow
   is a CSS variable
-- oks-ui `^1.1.2`
+- oks-ui `^1.3.2`
 - `lucide-react` for icons
 
 ## Scripts

@@ -246,7 +246,7 @@ export function FormsGroup() {
         <RangeField name="r" label="Range" min={0} max={100} defaultValue={40} showValue />
       </Demo>
       <Demo title="Toggles"><SwitchField name="sw" label="Switch" defaultChecked /><Checkbox label="Checkbox" defaultChecked /><Radio name="rd" value="x" label="Radio" defaultChecked /></Demo>
-      <Demo title="FileField" className="w-full"><FileField name="f" ui="dropzone" /></Demo>
+      <Demo title="FileField" className="w-full"><FileField name="f" label="Upload files" ui="dropzone" /></Demo>
       <Demo title="LoopFields" className="w-full">
         <Form onSubmit={(d) => toast.info(`${loopGroupToArray(d, 'items').length} rows`)} className="flex flex-col gap-3">
           <LoopFields

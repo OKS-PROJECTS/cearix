@@ -23,7 +23,7 @@ const COPY = {
 export default function ErrorPage({ code = 404 }) {
   const c = COPY[code] || COPY[404]
   return (
-    <div
+    <main
       className="flex min-h-dvh flex-col items-center justify-center gap-3 p-8 text-center"
       style={{ background: 'var(--app-bg)' }}
     >
@@ -48,6 +48,6 @@ export default function ErrorPage({ code = 404 }) {
           Get help
         </Button>
       </div>
-    </div>
+    </main>
   )
 }

@@ -452,7 +452,7 @@ export function TypographyPage() {
         <div className="cearix-prose max-w-2xl text-[0.9rem] leading-relaxed" style={{ color: 'var(--app-fg)' }}>
           <p>
             Cearix uses <strong>Inter</strong> at a 13px base with a tight modular scale.
-            Links like <a href="#top">this one</a> use the primary token, and{' '}
+            Links like <a href="#top" className="underline underline-offset-2">this one</a> use the primary token, and{' '}
             <code style={{ background: 'var(--app-surface-3)', padding: '0 4px', borderRadius: 4 }}>inline code</code> gets a subtle fill.
           </p>
           <Divider className="my-3" />

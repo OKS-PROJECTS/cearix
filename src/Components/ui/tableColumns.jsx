@@ -4,7 +4,7 @@ import { RowActions } from './chips'
 /** Column config for a trailing view / edit / delete actions column. */
 export const actionColumn = (opts = {}) => ({
   key: '__actions',
-  header: '',
+  header: <span className="sr-only">Actions</span>,
   align: 'end',
   render: (r) => (
     <RowActions

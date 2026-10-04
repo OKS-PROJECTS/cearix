@@ -48,7 +48,7 @@ export function TermsPage() {
         <div className="cearix-prose flex max-w-3xl flex-col gap-4 text-[0.88rem] leading-relaxed" style={{ color: 'var(--app-fg)' }}>
           {sections.map(([h, b]) => (
             <div key={h}>
-              <h3 className="font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{h}</h3>
+              <h2 className="font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{h}</h2>
               <p className="mt-1" style={{ color: 'var(--app-fg-muted)' }}>{b}</p>
             </div>
           ))}
@@ -120,7 +120,7 @@ export function PricingPage() {
         {PLANS.map((p) => (
           <Surface key={p.name} className={p.featured ? 'ring-1 ring-[var(--app-primary)]' : ''}>
             {p.featured && <Chip size="sm" color="primary" variant="soft">Most popular</Chip>}
-            <h3 className="mt-1 text-[1rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{p.name}</h3>
+            <h2 className="mt-1 text-[1rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{p.name}</h2>
             <p className="text-[0.8rem]" style={{ color: 'var(--app-fg-muted)' }}>{p.blurb}</p>
             <p className="mt-3 text-3xl font-bold" style={{ color: 'var(--app-fg-strong)' }}>
               ${annual ? Math.round(p.price * 0.8) : p.price}
@@ -370,9 +370,9 @@ export function BlogListPage() {
           <Surface key={p.id}>
             <div className="mb-3 h-40 rounded-lg" style={{ background: 'linear-gradient(135deg, var(--app-primary-soft), var(--app-surface-3))' }} />
             <Chip size="sm" variant="soft" color="primary">{p.category}</Chip>
-            <h3 className="mt-2 text-[1rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>
+            <h2 className="mt-2 text-[1rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>
               <Link to="/pages/blog/details">{p.title}</Link>
-            </h3>
+            </h2>
             <p className="mt-1 text-[0.83rem]" style={{ color: 'var(--app-fg-muted)' }}>{p.excerpt}</p>
             <p className="mt-3 text-[0.74rem]" style={{ color: 'var(--app-fg-subtle)' }}>{p.date} · {p.read} read</p>
           </Surface>
@@ -396,7 +396,7 @@ export function BlogDetailsPage() {
         <div className="my-5 h-56 rounded-xl" style={{ background: 'linear-gradient(135deg, var(--app-primary-soft), var(--app-surface-3))' }} />
         <div className="cearix-prose flex flex-col gap-4 text-[0.92rem] leading-relaxed" style={{ color: 'var(--app-fg)' }}>
           <p>The token layer started small: a brand ramp and a handful of semantic roles. Within a month it had grown to cover every surface, border and text tier — and it stayed legible because each layer only ever referenced the one below it.</p>
-          <h3 className="text-lg font-semibold" style={{ color: 'var(--app-fg-strong)' }}>One layer per concern</h3>
+          <h2 className="text-lg font-semibold" style={{ color: 'var(--app-fg-strong)' }}>One layer per concern</h2>
           <p>Palette ramps feed semantic roles; semantic roles feed an app layer; components read only the app layer. Dark mode redefines a single block and everything follows.</p>
           <blockquote style={{ borderLeft: '3px solid var(--app-primary)', paddingLeft: 12, color: 'var(--app-fg-muted)' }}>
             "Composed components never touch a hex — only a token."

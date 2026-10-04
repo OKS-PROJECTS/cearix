@@ -81,6 +81,7 @@ export function GalleryAppPage() {
         {imgs.map((s, i) => (
           <button
             key={s}
+            aria-label={`Open photo ${i + 1}`}
             onClick={() => setOpen(i)}
             className="group relative overflow-hidden rounded-lg"
             style={{ aspectRatio: '4 / 3', border: '1px solid var(--app-border)' }}

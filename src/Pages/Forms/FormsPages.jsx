@@ -139,10 +139,10 @@ export function FileUploadPage() {
   return (
     <Wrap title="File Uploads">
       <PanelCard title="Dropzone">
-        <FileField name="files" ui="dropzone" isDroppable multiple maxFiles={5} preview="thumbnails" />
+        <FileField name="files" label="Attachments" ui="dropzone" isDroppable multiple maxFiles={5} preview="thumbnails" />
       </PanelCard>
       <PanelCard title="Inline">
-        <FileField name="doc" ui="inline" clearable />
+        <FileField name="doc" label="Document" ui="inline" clearable />
       </PanelCard>
     </Wrap>
   )

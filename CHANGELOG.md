@@ -4,7 +4,24 @@ All notable changes to Cearix are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-> Requires oks-ui ^1.1.2
+> Requires oks-ui ^1.3.2
+
+## [1.0.1] — 2026-10-04
+
+### Changed
+
+- Updated to oks-ui `^1.3.2`; removed the unused `date-fns` dependency.
+
+### Fixed
+
+- Text contrast now meets WCAG AA (4.5:1) in light and dark: muted and subtle
+  text, status colours, links and the demo chips, and field error text.
+- Dark theme mirrors the brand and status ramps so labels on filled surfaces
+  stay readable with the 1.3 theme-aware palette.
+- Pages have a `<main>` landmark (auth, error and landing screens) and card
+  titles use `h2`, so heading order no longer skips a level.
+- The notification button keeps its dropdown semantics with the count badge
+  placed beside it instead of wrapping it.
 
 ## [1.0.0] — 2026-09-02
 

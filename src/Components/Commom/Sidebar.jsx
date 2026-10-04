@@ -197,7 +197,7 @@ export function Sidebar({ collapsed = false, onNavigate }) {
             {!collapsed && (
               <p
                 className="px-3 pb-1 pt-1 text-[0.72rem] font-semibold uppercase tracking-[0.09em]"
-                style={{ color: 'var(--app-menu-fg-muted)', opacity: 0.5 }}
+                style={{ color: 'var(--app-menu-fg-muted)' }}
               >
                 {section.heading}
               </p>

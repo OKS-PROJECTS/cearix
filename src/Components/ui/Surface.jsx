@@ -38,9 +38,9 @@ export function CardHeader({ title, subtitle, actions, divider = true, className
       <div className="min-w-0">
         <div className="flex items-center gap-2">
           {icon}
-          <h3 className="truncate text-[1.02rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>
+          <h2 className="truncate text-[1.02rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>
             {title}
-          </h3>
+          </h2>
         </div>
         {subtitle && (
           <p className="mt-0.5 text-[0.8rem]" style={{ color: 'var(--app-fg-muted)' }}>

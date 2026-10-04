@@ -31,6 +31,7 @@ export default function Landing() {
         </Button>
       </header>
 
+      <main>
       <section className="mx-auto max-w-4xl px-5 pb-16 pt-14 text-center">
         <Chip variant="soft" color="primary" size="sm">Built entirely with oks-ui</Chip>
         <h1 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl" style={{ color: 'var(--app-fg-strong)' }}>
@@ -58,7 +59,7 @@ export default function Landing() {
                 <span className="flex h-10 w-10 items-center justify-center rounded-lg" style={{ background: 'var(--app-primary-soft)', color: 'var(--app-primary)' }}>
                   <f.icon size={19} />
                 </span>
-                <h3 className="mt-3 text-[0.95rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{f.title}</h3>
+                <h2 className="mt-3 text-[0.95rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{f.title}</h2>
                 <p className="mt-1 text-[0.83rem]" style={{ color: 'var(--app-fg-muted)' }}>{f.body}</p>
               </CardBody>
             </Card>
@@ -80,7 +81,7 @@ export default function Landing() {
             >
               <CardBody className="p-6">
                 {p.featured && <Chip size="sm" color="primary" variant="soft">Most popular</Chip>}
-                <h3 className="mt-2 text-[1rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{p.name}</h3>
+                <h2 className="mt-2 text-[1rem] font-semibold" style={{ color: 'var(--app-fg-strong)' }}>{p.name}</h2>
                 <p className="mt-1 text-3xl font-bold" style={{ color: 'var(--app-fg-strong)' }}>
                   {p.price}<span className="text-sm font-normal" style={{ color: 'var(--app-fg-muted)' }}>/mo</span>
                 </p>
@@ -99,6 +100,7 @@ export default function Landing() {
           ))}
         </div>
       </section>
+      </main>
 
       <footer className="border-t px-5 py-8 text-center text-[0.8rem]" style={{ borderColor: 'var(--app-border)', color: 'var(--app-fg-muted)' }}>
         © {new Date().getFullYear()} Cearix · Built entirely with oks-ui
